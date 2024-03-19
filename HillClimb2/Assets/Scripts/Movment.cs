@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Movment : MonoBehaviour
 {
+    //aplicar a fisica de movimento ao corpo do veiculo
+    public Rigidbody2D carRig; //Cropo do veiculo
     public float speed; // responsavel pela velocidade
     private float movment; //direção do movimento (frente e ré)
     public Axle[] axles; //Definir a quantidade de eixos
@@ -44,6 +46,13 @@ public class Movment : MonoBehaviour
         foreach(Axle axle in axles)
         {
             axle.wheel.AddTorque(speed * axle.torque * Time.fixedDeltaTime);
+            //Aplicando o calulo para cada eixo aplicar a fisica contatraria
+            //a fisica das rodas
+            //ou seja se o carro for para frente
+            //os roda iram girar no sentido horario
+            //e o corpo do veiculo precisa girar no sentido 
+            //antihorario
+            carRig.AddTorque(-speed * axle.torque * Time.fixedDeltaTime);
         }
     }
 }
