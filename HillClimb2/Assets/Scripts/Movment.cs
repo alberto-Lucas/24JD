@@ -40,19 +40,26 @@ public class Movment : MonoBehaviour
 
     void SetTorque(float speed)
     {
-        //Vai passar por cada eixo configurado
-        //Ira calcular e aplicar o toque em cada eixo
-        //Girando as rodas
-        foreach(Axle axle in axles)
+        //Vamos validar se o combustivel
+        //é maior que zero
+        //Se ira aplicar a aceleração
+        //se o combustivel foir maior que zero
+        if (FuelDisplay.instance.GetFuel() > 0)
         {
-            axle.wheel.AddTorque(speed * axle.torque * Time.fixedDeltaTime);
-            //Aplicando o calulo para cada eixo aplicar a fisica contatraria
-            //a fisica das rodas
-            //ou seja se o carro for para frente
-            //os roda iram girar no sentido horario
-            //e o corpo do veiculo precisa girar no sentido 
-            //antihorario
-            carRig.AddTorque(-speed * axle.torque * Time.fixedDeltaTime);
+            //Vai passar por cada eixo configurado
+            //Ira calcular e aplicar o toque em cada eixo
+            //Girando as rodas
+            foreach (Axle axle in axles)
+            {
+                axle.wheel.AddTorque(speed * axle.torque * Time.fixedDeltaTime);
+                //Aplicando o calulo para cada eixo aplicar a fisica contatraria
+                //a fisica das rodas
+                //ou seja se o carro for para frente
+                //os roda iram girar no sentido horario
+                //e o corpo do veiculo precisa girar no sentido 
+                //antihorario
+                carRig.AddTorque(-speed * axle.torque * Time.fixedDeltaTime);
+            }
         }
     }
 }
