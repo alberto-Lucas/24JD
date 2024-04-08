@@ -30,7 +30,7 @@ public class FuelDisplay : MonoBehaviour
         //seja sempre positivo
         //pois o valor negativo ira recuperar 
         //o combustivel
-        fuel.fillAmount -= Math.Abs(Input.GetAxis("Horizontal")/100f);
+        fuel.fillAmount -= Math.Abs(Input.GetAxis("Horizontal")/10000f);
     }
 
     //Metodo para recuperar o combustivel
